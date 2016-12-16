@@ -28,7 +28,7 @@ Posts can optionally contain people and person records, which create their own e
 ![](https://raw.githubusercontent.com/craigeley/trophy-logbook/master/_screenshots/location_entry.png)
 
 ## Caveats
-Feel free to leave comments and/or submit pull requests for obvious bugs, and I'll do my best. For things like major feature requests or changing how the site functions, I would suggest digging around in the code and seeing if you can built it yourself. In a sense, this project is provided "as-is."
+Feel free to leave comments and/or submit pull requests for obvious bugs, and I'll do my best. For things like major feature requests or changing how the site functions, I would suggest digging around in the code and seeing if you can build it yourself. In a sense, this project is provided "as-is."
 
 ## License
 Trophy Jekyll is licensed under the MIT License.
