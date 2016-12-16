@@ -23,7 +23,9 @@ From the home screen, the most visible elements are "days":
 Days are comprised of individual entries, which are the posts contained in the `_posts` folder:
 ![](https://raw.githubusercontent.com/craigeley/trophy-logbook/master/_screenshots/summarized_day.png)
 
-Posts can optionally contain people and person records, which create their own entries. By default, these entries only contain a list of all days for which they are in entries. However, by creating a sidecar file in the `_categories` folder, you can include metadata such as a picture and a description. These files should use a dash instead of a space in their name. See [the _categories folder](https://github.com/craigeley/trophy-logbook/tree/master/_categories) for examples.
+Posts can optionally contain people and person records, which create their own entries. By default, these entries only contain a list of all days for which they are in entries. However, by creating a sidecar file in the `_categories` folder, you can include metadata such as a picture and a description. These files should use a dash instead of a space in their name. See [the _categories folder](https://github.com/craigeley/trophy-logbook/tree/master/_categories) for examples, like this one:
+
+![](https://raw.githubusercontent.com/craigeley/trophy-logbook/master/_screenshots/location_entry.png)
 
 ## Caveats
 Feel free to leave comments and/or submit pull requests for obvious bugs, and I'll do my best. For things like major feature requests or changing how the site functions, I would suggest digging around in the code and seeing if you can built it yourself. In a sense, this project is provided "as-is."
