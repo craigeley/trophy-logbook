@@ -1,0 +1,78 @@
+---
+layout: default
+---
+{% assign myArray = "" | split: "|" %}
+{% assign cat_uniq = "" | split: "|" %}
+{% assign tag_uniq = "" | split: "|" %}
+<section class="previews">
+  <div>
+    <a class="nav nav--white" href="{{ site.baseurl }}/">
+      <i class="fa fa-lg fa-arrow-left"></i>
+      <span>Back to Posts</span>
+    </a>
+    {% for post in page.posts %}
+    {% assign spot = {{post.location}} | append: "|" | cgi_escape %}
+    {% assign myArray = myArray | push: spot %}
+    {% if post.zoom %}
+    	{% assign zoom = {{post.zoom}} | prepend: "&zoom=" %}
+    {% endif %}
+    {% endfor %}
+    <figure class="absolute-bg preview__img" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?&size=600x600&scale=2&markers={{myArray}}{{zoom}}&key={{site.maps_api}}');"></figure>
+    <div class="previews__container">
+    <h2>{{ page.date | date: "%B %-d, %Y" }}</h2>
+    </div>
+  </div>
+
+  <div>
+    <header>
+      <ul class="tabs">
+        <li class="tabs__item">{{ page.date | date: "%B %-d %Y" }}</li>
+        <li class="tabs__item">Places</li>
+        <li class="tabs__item">People</li>
+      </ul>
+    </header>
+
+    <div class="tab">
+    <section class="section-padding post" itemprop="articleBody">
+      {% for post in page.posts reversed %}
+        <a href="{{ post.url | prepend: site.baseurl }}"><h3>{{ post.title }} / {{ post.date | date: "%l:%M%P" }}</h3></a>
+        <p>{{ post.content | markdownify }}</p>
+        <hr>
+      {% endfor %} 
+      {% for post in page.posts %}
+        {% for tag in post.tags %}
+            {% assign tag_name = {{tag}} %}
+            {% assign tag_uniq = tag_uniq | push: tag_name %}
+        {% endfor %}
+      {% endfor %}
+      {% assign tag_uniq = tag_uniq | uniq %}
+      {% for tag in tag_uniq %}
+        {% assign indicator = forloop.first %} 
+        {% assign no_comma = forloop.last %}
+        {% if indicator %}People: {% endif %}<a href="/people/{{ tag }}">{{ tag | replace: "-", " " }}</a>{% unless no_comma %} |{% endunless %}
+      {% endfor %}
+      <br>
+      {% for post in page.posts %}
+        {% for category in post.categories %}
+            {% assign cat_name = {{category}} %}
+            {% assign cat_uniq = cat_uniq | push: cat_name %}
+        {% endfor %}
+      {% endfor %}
+      {% assign cat_uniq = cat_uniq | uniq %}
+      {% if cat_uniq != ""%}
+      {% endif %}
+      {% for cat in cat_uniq %} 
+        {% assign indicator = forloop.first %} 
+        {% assign no_comma = forloop.last %}
+        {% if indicator %}Places: {% endif %}<a href="/place/{{ cat }}">{{ cat | replace: "-", " " }}</a>{% unless no_comma %} |{% endunless %}
+      {% endfor %}
+        </p>
+      <br>
+    </div>
+    
+    {% include categories-tab.html %}
+    {% include tags-tab.html %}
+  
+  </div>
+
+</section>

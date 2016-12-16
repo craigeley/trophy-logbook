@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<section class="previews">
+  <div>
+      <a class="nav nav--white" href="{{ site.baseurl }}/">
+      <i class="fa fa-lg fa-arrow-left"></i>
+      <span>Back to Posts</span>
+    </a>
+    <figure class="absolute-bg preview__img" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?&size=600x600&scale=2&markers={{page.location | cgi_escape}}&key={{site.maps_api}}');"></figure>
+      <div class="previews__container">
+    <h2>{{ page.date | date: "%B %-d, %Y" }}</h2>
+    </div>
+  </div>
+  <div>
+  <header>
+    <ul class="tabs">
+      <li class="tabs__item">{{ page.date | date: "%B %-d %Y" }}</li>
+      <li class="tabs__item">Places</li>
+      <li class="tabs__item">People</li>
+    </ul>
+  </header>
+
+    <div class="tab">
+    <section class="section-padding post" itemprop="articleBody">
+    <h3>{{ page.title }}</h3>
+    {{ content }}
+    <hr>
+    {% for tag in page.tags %}
+      {% assign indicator = forloop.first %} 
+      {% assign no_comma = forloop.last %}
+      {% if indicator %}People: {% endif %}<a href="/people/{{ tag }}">{{ tag | replace: "-", " " }}</a>{% unless no_comma %} |{% endunless %}
+    {% endfor %}<br>
+    {% for category in page.categories %} 
+      {% assign indicator = forloop.first %} 
+      {% assign no_comma = forloop.last %}
+      {% if indicator %}Places: {% endif %}<a href="/place/{{ category }}">{{ category | replace: "-", " " }}</a>{% unless no_comma %} |{% endunless %}
+    {% endfor %}
+
+  </div>
+
+    {% include categories-tab.html %}
+    {% include tags-tab.html %}

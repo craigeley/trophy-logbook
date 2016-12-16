@@ -1,0 +1,50 @@
+<section class="previews">
+  <div>
+    <a class="nav nav--white" href="{{ site.baseurl }}/">
+      <i class="fa fa-lg fa-arrow-left"></i>
+      <span>Back to Posts</span>
+    </a>
+    {% for post in site.categories[page.title] %}
+      <figure class="absolute-bg" style="background-image: url('{{ page.image }}');"></figure>
+    {% endfor %}
+    <div class="previews__container">
+      <span>Category</span>
+      <h1>{{ page.title | replace: "-", " " }}</h1>
+    </div>
+  </div>
+
+  <div>
+    <header>
+      <ul class="tabs">
+        <li class="tabs__item">{{ page.title | replace: "-", " " }}</li>
+        <li class="tabs__item">Categories</li>
+      </ul>
+    </header>
+
+    <div class="tab">
+    <ul class="cards">
+    {% if page.summary != null %}
+      <section class="category">
+        {{ page.summary | markdownify }}
+      </section>
+    {% endif %}
+    {% for post in site.categories[page.title] %}
+      <li class="card">
+        <a class="card__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
+          <div class="card__container">
+            <h2 class="preview_date">{{ post.date | date: "%b %-d, %Y" }}</h2>
+            <span class="card__more">Read More</span>
+          </div>
+        </a>
+      </li>
+        {% endfor %}
+      </ul>
+
+      {% include archive-link.html %}
+    </div>
+
+    {% include categories-tab.html %}
+
+  </div>
+
+</section>

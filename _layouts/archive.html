@@ -1,0 +1,69 @@
+---
+layout: default
+---
+{% assign days_uniq = "" | split: "|" %}
+{% assign tags_uniq = "" | split: "|" %}
+<section class="previews">
+{% capture record %}{{page.title}}{% endcapture %}
+  <div>
+    <a class="nav nav--white" href="{{ site.baseurl }}/">
+      <i class="fa fa-lg fa-arrow-left"></i>
+      <span>Back to Posts</span>
+    </a>
+    {% for page in site.pages %}
+    {% if page.title == record and page.image != nil %}
+    <figure class="absolute-bg preview__img" style="background-image: url('{{ page.image }}');"></figure>
+    {% endif %}
+    {% endfor %}
+    <div class="previews__container">
+      <h1>{{ page.title | replace: "-", " " }}</h1>
+    </div>
+  </div>
+
+  <div>
+    <header>
+      <ul class="tabs">
+        <li class="tabs__item">{{ page.title | replace: "-", " " }}</li>
+        <li class="tabs__item">Places</li>
+        <li class="tabs__item">People</li>
+      </ul>
+    </header>
+
+    <div class="tab">
+    <section class="section-padding post" itemprop="articleBody">
+    {% for page in site.pages %}
+    {% if page.title == record %}
+      {{ page.content | markdownify }}
+    {% endif %}
+    {% endfor %}
+        <h3>Encounters:</h3>
+        {% for post in site.categories[page.title] %}
+            {% assign date_name = {{post.date | date: "%Y-%m-%-d"}} %}
+            {% assign days_uniq = days_uniq | push: date_name %}
+        {% endfor %}
+      {% assign days_uniq = days_uniq | uniq %}
+      {% for day in days_uniq %}
+        <ul>
+        <a href="/days/{{ day | date: "%Y-%m-%-d" }}" itemprop="url">
+            <li><u>{{ day | date: "%b %-d, %Y" }}</u></li>
+        </a>
+        {% endfor %}
+        {% for post in site.tags[page.title] %}
+            {% assign date_name = {{post.date | date: "%Y-%m-%-d"}} %}
+            {% assign tags_uniq = tags_uniq | push: date_name %}
+        {% endfor %}
+      {% assign tags_uniq = tags_uniq | uniq %}
+      {% for day in tags_uniq %}
+        <a href="/days/{{ day | date: "%Y-%m-%-d" }}" itemprop="url">
+            <li><u>{{ day | date: "%b %-d, %Y" }}</u></li>
+        </a>
+        {% endfor %}
+      </ul>
+    </div>
+    {% include archive-link.html %}
+    {% include categories-tab.html %}
+    {% include tags-tab.html %}
+  
+  </div>
+
+</section>

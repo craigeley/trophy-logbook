@@ -1,0 +1,40 @@
+# Site settings
+email: 
+baseurl: ""
+google_analytics: 
+host: 0.0.0.0
+maps_api: AIzaSyA7XGsDS5WftXFgNiuIouzMy20aH9XyT3w
+
+# SEO settings
+title: the Logbook
+description: 
+url: ""
+twitter_username: 
+default_img: 
+
+# Build settings
+include: ["_categories"]
+exclude: ["_screenshots", "Gemfile", "Gemfile.lock"]
+markdown: kramdown
+permalink: /entries/:year-:month-:day-:title/
+
+# Sass
+sass:
+  style: compressed
+
+# Gems
+gems: [jekyll-paginate, jekyll-sitemap, octopress-autoprefixer, jekyll-archives, jekyll-redirect-from]
+
+# Jekyll-Archives
+jekyll-archives:
+  enabled: [tags, categories, day]
+  layouts: 
+    tag: 'archive'
+    category: 'archive'
+    day: 'archive_day'
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/days/:year-:month-:day/'
+    tag: '/people/:name/'
+    category: '/place/:name/'

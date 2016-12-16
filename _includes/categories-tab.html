@@ -1,0 +1,18 @@
+<div class="tab">
+  <ul class="cards">
+    {% for category in site.categories %}
+      {% assign cat_name = category | first %}
+      <li class="card">
+        <a class="card__link" href="{{ site.baseurl }}/place/{{ category | first | downcase | slugify }}/">
+          <div class="card__container">
+            <h2>{{ cat_name | replace: "-", " " }}</h2>
+            <p class="card__count">{{ site.categories[cat_name] | size }} Posts</p>
+            <span class="card__more">View All</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% include archive-link.html %}
+</div>

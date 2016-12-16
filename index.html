@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{% assign days_uniq = "" | split: "|" %}
+<section class="previews">
+  <div>
+    <div class="previews__container">
+      <span>Welcome to</span>
+      <h1>{{ site.title }}</h1>
+    </div>
+  </div>
+
+  <div>
+    <header>
+      <ul class="tabs">
+        <li class="tabs__item">Posts</li>
+        <li class="tabs__item">Places</li>
+        <li class="tabs__item">People</li>
+      </ul>
+    </header>
+
+    <div class="tab">
+    <ul class="cards">
+        {% for post in site.posts %}
+            {% assign date_name = {{post.date | date: "%Y-%m-%-d"}} %}
+            {% assign days_uniq = days_uniq | push: date_name %}
+        {% endfor %}
+      {% assign days_uniq = days_uniq | uniq %}
+      {% for day in days_uniq %}
+      <li class="card">
+        <a class="card__link" href="/days/{{ day }}/">
+          <div class="card__container">
+            <h2 class="preview_date">{{ day | date: "%b %-d, %Y" }}</h2>
+            <span class="card__more">Read More</span>
+          </div>
+        </a>
+      </li>
+        {% endfor %}
+      </ul>
+
+      {% include archive-link.html %}
+    </div>
+
+    {% include categories-tab.html %}
+    {% include tags-tab.html %}
+
+  </div>
+
+</section>

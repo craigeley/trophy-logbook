@@ -1,0 +1,18 @@
+<div class="tab">
+  <ul class="cards">
+    {% for tag in site.tags %}
+      {% assign tag_name = tag | first %}
+      <li class="card">
+        <a class="card__link" href="{{ site.baseurl }}/people/{{ tag | first | downcase | slugify }}/">
+          <div class="card__container">
+            <h2>{{ tag_name | replace: "-", " " }}</h2>
+            <p class="card__count">{{ site.tags[tag_name] | size }} Posts</p>
+            <span class="card__more">View All</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% include archive-link.html %}
+</div>
