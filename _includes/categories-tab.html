@@ -1,6 +1,7 @@
 <div class="tab">
   <ul class="cards">
-    {% for category in site.categories %}
+  {% assign cat_list = site.categories | sort %}
+    {% for category in cat_list %}
       {% assign cat_name = category | first %}
       <li class="card">
         <a class="card__link" href="{{ site.baseurl }}/place/{{ category | first | downcase | slugify }}/">
