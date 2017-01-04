@@ -22,7 +22,7 @@ layout: default
     <div class="tab">
     <ul class="cards">
         {% for post in site.posts %}
-            {% assign date_name = {{post.date | date: "%Y-%m-%-d"}} %}
+            {% assign date_name = {{post.date | date: "%Y-%m-%d"}} %}
             {% assign days_uniq = days_uniq | push: date_name %}
         {% endfor %}
       {% assign days_uniq = days_uniq | uniq %}

@@ -44,7 +44,7 @@ layout: default
       {% assign days_uniq = days_uniq | uniq %}
       {% for day in days_uniq %}
         <ul>
-        <a href="/days/{{ day | date: "%Y-%m-%-d" }}" itemprop="url">
+        <a href="/days/{{ day | date: "%Y-%m-%d" }}" itemprop="url">
             <li><u>{{ day | date: "%b %-d, %Y" }}</u></li>
         </a>
         {% endfor %}
@@ -54,7 +54,7 @@ layout: default
         {% endfor %}
       {% assign tags_uniq = tags_uniq | uniq %}
       {% for day in tags_uniq %}
-        <a href="/days/{{ day | date: "%Y-%m-%-d" }}" itemprop="url">
+        <a href="/days/{{ day | date: "%Y-%m-%d" }}" itemprop="url">
             <li><u>{{ day | date: "%b %-d, %Y" }}</u></li>
         </a>
         {% endfor %}
